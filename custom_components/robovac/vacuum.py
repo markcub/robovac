@@ -243,7 +243,7 @@ class RoboVacEntity(StateVacuumEntity):
         return self._attr_ip_address
 
     @property
-    def state(self) -> str | None:
+    def activity(self) -> str | None:
         if self.tuya_state is None:
             return STATE_UNAVAILABLE
         elif (
@@ -268,7 +268,7 @@ class RoboVacEntity(StateVacuumEntity):
         elif self.tuya_state == "Sleeping" or self.tuya_state == "Standby":
             return STATE_IDLE
         else:
-            return STATE_CLEANING
+            return VacuumActivity.CLEANING
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
