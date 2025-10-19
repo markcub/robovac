@@ -29,8 +29,12 @@ from enum import IntEnum, StrEnum
 from homeassistant.loader import bind_hass
 from homeassistant.components.vacuum import (
     StateVacuumEntity,
-    VacuumEntityFeature,
-    VacuumActivity,
+    STATE_CLEANING,
+    STATE_DOCKED,
+    STATE_ERROR,
+    STATE_IDLE,
+    STATE_RETURNING,
+    STATE_PAUSED
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -256,13 +260,13 @@ class RoboVacEntity(StateVacuumEntity):
                     getErrorMessage(self.error_code)
                 )
             )
-            return VacuumActivity.ERROR
-        elif self.tuya_state == "Charging" or self.tuya_state == "completed":
-            return VacuumActivity.DOCKED
+            return STATE_ERROR
+        elif self.tuya_state == "Charging" or self.tuya_state == "Completed":
+            return STATE_DOCKED
         elif self.tuya_state == "Recharge":
-            return VacuumActivity.RETURNING
-        elif self.tuya_state == "Sleeping" or self.tuya_state == "standby":
-            return VacuumActivity.IDLE
+            return STATE_RETURNING
+        elif self.tuya_state == "Sleeping" or self.tuya_state == "Standby":
+            return STATE_IDLE
         else:
             return VacuumActivity.CLEANING
 
