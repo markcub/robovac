@@ -24,10 +24,10 @@ import warnings
 dynamic_requires = []
 
 setup(
-    name="robovac",
-    version="1.0",
-    author="Luke Morrigan",
-    url="http://github.com/codefoodpixels/robovac",
+    name="robovacL60",
+    version="0.2",
+    author="Mark Bain",
+    url="http://github.com/markcub/robovac",
     packages=find_packages(),
     scripts=[],
     description="Python API for controlling Eufy Robovac vacuum cleaners",
